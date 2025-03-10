@@ -21,5 +21,6 @@ repository 생성 (sonore)
 
 ESC-50 탐색
 - 데이터 다운로드
-- gitignore 설정정
 - ./audio의 2000개 소리 중 dog 범주에 속하는 소리 청취
+- gitignore 설정
+- 해당 논문 다운로드
