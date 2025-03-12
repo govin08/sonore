@@ -1,4 +1,4 @@
-# 2025. 2. 12
+# 2025. 2. 12 수
 관심있는 프로젝트 목록 정리
 - 음성 명령어 인식 (Voice Command Recognition)
 - 음악 장르 분류 (Music Genre Classification)
@@ -6,7 +6,7 @@
 - voice conversion / voice cloning
 - audio resolution enhancement
 
-# 2025. 3. 10
+# 2025. 3. 10 월
 repository 생성 (sonore)
 
 괜찮은 데이터셋 발견 및 탐색
@@ -26,4 +26,32 @@ ESC-50 탐색
 - 해당 논문 다운로드
 
 논문 열람
-- 초록 열람
+- 초록
+
+# 2025. 3. 12 수
+
+논문 열람
+- 1. Introduction
+- 2. The ESC dataset
+        - (기타) cross validation 부분에 대한 이해
+        - (기타) [4번 주석, havard dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/YDEPUT) 훑기
+        - (기타) [5번 주석, notebook](https://github.com/karolpiczak/paper-2015-esc-dataset/blob/master/Notebook/ESC-Dataset-for-Environmental-Sound-Classification.ipynb) 훑기
+    - 2.1 ESC-50
+        - (본문) labeled data, 2000 sound events, 50 classes (40 sound events for each class)
+    - 2.2 ESC-10
+        - (본문) labeled data, 10 classes
+    - 2.3 ESC-US
+        - (본문) unlabeld data, 250000 sound events.
+- 3. Sound Classification
+    - 3.1 Human classification accuracy
+        - (본문) accuracy : ESC-50는 95.7%, ESC-10은 81.3%.
+        - (본문) recall : class에 따라 천차만별.
+    - 3.2 Baseline machine classification results
+        - (기타) MFCC 개요 검색
+        - (기타) 관련 책 검색
+        - (기타) "Fundamentals of Music Processing: Using Python and Jupyter Notebooks" 다운로드
+        - (본문) 결과
+            - K-NN              66.7%, 32.2%
+            - random forest     72.7%, 44.3%
+            - SVM               67.5%, 39.6%
+- 4. Summary
