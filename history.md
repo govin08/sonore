@@ -55,3 +55,63 @@ ESC-50 탐색
             - random forest     72.7%, 44.3%
             - SVM               67.5%, 39.6%
 - 4. Summary
+
+# 2025. 3. 13 목
+
+머신러닝 기법 공부
+- 목표 : kNN, random forest, SVM을 이해하기 위함. 이것들을 대충은 알고 있지만 완전히 아는 것은 아니므로 공부하려 함.
+- 책 : 
+[Introduction to Statistical Learning in Python](https://www.statlearning.com/), ISLP로 표기
+
+ISLP
+- Preface
+- 1 Introduction
+- 2 Statistical Learning
+    - 2.1 What is statistical learning?
+            - predictors and responses
+            - $Y=f(X)+\epsilon\tag{2.1}$
+            - Statistical learning refers to a set of approaches for estimating $f$.
+        - 2.1.1 Why estimate $f$?
+            - prediction and inference
+            - prediction
+                - When a set of inputs $X$ are readily available, but the output $Y$ cannot be easily obtained, $\hat f$ is often treated as a black box.
+                - $\hat Y=\hat f(X)\tag{2.2}$
+                - reducible error : The difference between f(X) and \hat Y=\hat f(X). This can be minimized by choosing \hat f closer to  f.
+                - irreducible error : The difference between Y and f(X). This cannot be improved further.
+                - That is, the error $|Y-\hat Y|$ can be thought of as two errors $|(Y-f(X))+(f(X)-\hat f(X))|$
+                - Actually, one can compute $E(Y-\hat Y)^2=[f(X)-\hat f(X)]^2+\text{Var}(\epsilon)$ so that the average of the squared difference between the predicted value $\hat Y$ and the actual value $Y$ is a sum of reducible error and irreducible error.
+            - inference
+                - When we're interested in understanding the association between $Y$ and $X_1$, $\cdots$, $X_p$, our goal is not necessarily to make predictions for $Y$. Instead, we may wonder about the following questions :
+                - Which predictors are associated with the response?
+                - What is the relationship between the response and each predictor?
+                - Can the relationship between $Y$ and each predictor be adequately summarized using a linear equation, or is the relationship more complicated?
+            - This book deals with the problems of (1) prediction, (2) inference, or (3) the mixture of them.
+        - 2.1.2 How do we estimate $f$?
+            - In order to estimate $f$ by $\hat f$ so that $Y=\hat f(X)$, we may use parametric or non-parametric methods.
+            - parametric methods
+                - parametric methods follow the two steps below.
+                - First, we parameterize $f$, that is, we use a set of parameters to formulate a model. For instance, we can construct a linear model $\beta_0+\beta_1X_1+\beta_2X_2+\cdots+\beta_pX_p\tag{2.4}$.
+                - Next, we fit or train the model, that is, we find the optimal set of parameters that minimizes the difference (between, say, $Y$ and $\hat Y$).
+                - It simplifies the problem of estimating $f$. It reduces to a finite dimensional optimization problem. (pros)
+                - The model will usually not match the true unknown form $f$. (cons)
+                - The linear fit still appears to do a reasonable job of capturing the relationship between the predictors and the response. (pros)
+            - non-parametric methods
+                - Non-parametric methods do not make explicit assumptions about the functional form of $f$.
+                - They have the potential to accurately fit a wider range of possible shapes for $f$. (pros)
+                - A very large number of observations is required in order to obtain an accurate estimate for $f$. (cons)
+                - They sometimes accompany the issue of overfitting. (cons)
+        - 2.1.3 The trade-off between prediction accuracy and model interpretability
+            - In general, a model cannot be both flexible and restrictive.
+            - The linear regression is an example of restrictive methods where prediction may not be as accurate but we can interpret many things from the model.
+            - The thin plate spline is an example of a flexible method where the prediction is quite accurate but there are fewer things to interpret and it has a risk of overfitting.
+            - Two specific methods of linear regression : the least squares method and lasso. Both are restrictive, but lasso is more interpretable since it specifies the subset of features that are relevant to the response.
+            - GAMs(Generalized additive models) employ some nonlinearity from the linear model, so it is more flexible and less interpretable.
+            - Bagging, boosting, support vector machine, neural networks are highly flexible approaches.
+        - 2.1.4 Supervised versus unsupervised learning
+            - Many classical statistical learning methods operate in the supervised learning domain.
+            - Unsupervised learning describes a situation in which for every observation $i=1,2,\cdots,n$, we observe a vector of measurements $x_i$, but no associated response $y_i$. In this setting, we may use cluster analysis.
+            - For $m\lt n$, if predictor measurement $x_i$ with $1\le i\le m$ has a response measurement $y_i$, but the other predictor measurement $x_i$ with $m+1\le i\le n$ has no response measurement, we refer to this setting as a semi-supervised learning problem.
+        - 2.1.5 Regression versus classification problems
+            - If the response is quantitative (of numerical form), the problem is called regression; if the response is qualitative (of categorical form), the problem is called a classification. But the distinction is not always that crisp.
+            - Logistic regression, despite its name, is used in classification problems. K-nearest neighbors and boosting can be used in both cases.
+            - In contrast to the response, whether the predictors are qualitative or quantitative is not that important, since we can always code the predictor to be a vector.
