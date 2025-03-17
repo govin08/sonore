@@ -115,3 +115,108 @@ ISLP
             - If the response is quantitative (of numerical form), the problem is called regression; if the response is qualitative (of categorical form), the problem is called a classification. But the distinction is not always that crisp.
             - Logistic regression, despite its name, is used in classification problems. K-nearest neighbors and boosting can be used in both cases.
             - In contrast to the response, whether the predictors are qualitative or quantitative is not that important, since we can always code the predictor to be a vector.
+
+# 2025. 3. 17 월
+
+## 2 Statistical Learning (ISLP)
+2.1 What is Statistical Learning?
+-  A wide range of statistical learning methods will be introduced in this book.
+- There is no universal method that works well to all kinds of datasets.
+- Hence it is an important task to decide for any given set of data which method produces the best results.
+
+- 2.1.1 Measuring the Quality of Fit.
+    - In the regression setting, MSE is the most commonly-used measure for training and test phases both :
+    $$\text{MSE} = \frac1n\sum_{i=1}^n\left(y_i-\hat f(x_i)\right)^2\tag{2.5}$$
+    - In many cases, the test set might not be available.
+    So one might imagine simply selecting a statistical learning method that minimizes the training MSE.
+    - Unfortunately, there is a fundamental problem with this strategy : **overfitting**.
+    - As the flexibility of the statistical learning method increases, we observe a monotone decrease in the training MSE and a U-shape in the test MSE.
+    This is a fundamental property of statistical learning that holds regardless of the particular data set at hand and regardless of the statistical method being used.
+    As model flexibility increases, the training MSE will decrease, but the test MSE may not.
+    When a given method yields a small training MSE but a large test MSE, we are said to be **overfitting** the data.
+    This happens because our statistical learning procedure is working too hard to find patterns in the training data, and may be picking up some patterns that are just caused by random chance rather than by true properties of the unknown function $f$.
+    - The flexibility level corresponding to the model with the minimal test MSE can vary considerably among data sets.
+    Throughout this book, we discuss a variety of approaches that can be used in practice to estimate this minimum point.
+    One important method is cross-validation (Chapter 5), which is a method for estimating the test MSE using the training data.
+- 2.2.2 The Bias-Variance Trade-Off
+    - For a given test value $x_0$, the expected test MSE can always be decomposed into the squared bias of $\hat f(x_0)$, the variance of $\hat f(x_0)$ and the variance of the error terms $\epsilon$.
+    $$\mathbb E\left[(y_0-\hat f(x_0))^2\right]
+    =\text{Var}\left(\hat f(x_0)\right)+\text{Bias}\left(\hat f(x_0)\right)^2+\text{Var}(\epsilon).\tag{2.7}$$
+    - A proof from [wikipedia](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff#Derivation).
+        - We have $Y=f(X)+\epsilon$ with $\mathbb E[\epsilon]=0$.
+        Let $\text{Var}(\epsilon)=\sigma^2$.
+        - For a collected training set $\mathcal D$, we have an approximation $\hat f$ of $f$.
+        - We take the expectation $\mathbb E$ in a sense that the training set $\mathcal D$ may vary so that $\hat f$ can have different forms and in the sense that $\epsilon$ may vary.
+        - For a given test value $x_0$, we have
+            $$\begin{aligned}
+            \text{MSE}
+            &=\mathbb E\left[(y_0-\hat f(x_0))^2\right]\\
+            &=\mathbb E\left[(f(x_0)+\epsilon-\hat f(x_0))^2\right]\\
+            &=\mathbb E\left[(f(x_0)-\hat f(x_0))^2\right]
+            +2\mathbb E\left[(f(x_0)-\hat f(x_0))\epsilon\right]
+            +\mathbb E[\epsilon^2]\\
+            &=\mathbb E\left[(f(x_0)-\hat f(x_0))^2\right]
+            +2\mathbb E\left[(f(x_0)-\hat f(x_0))\right]\mathbb E[\epsilon]
+            +\mathbb E[\epsilon^2]\\
+            &=\mathbb E\left[(f(x_0)-\hat f(x_0))^2\right]+\sigma^2.
+            \end{aligned}$$
+        - The first term of the right hand side becomes
+            $$\begin{aligned}
+            &\mathbb E\left[\left(f(x_0)-\hat f(x_0)\right)^2\right]\\
+            =&\mathbb E\left[\left(f(x_0)
+            -\mathbb E[\hat f(x_0)]+\mathbb E[\hat f(x_0)]
+            -\hat f(x_0)\right)^2\right]\\
+            =&\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2\right]
+            +2\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)
+            \left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)\right]
+            +\mathbb E\left[\left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)^2\right]\\
+            =&A+B+C.
+            \end{aligned}$$
+            where
+            $$\begin{aligned}
+            A&=\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2\right]\\
+            &=f(x_0)^2-2f(x_0)\mathbb E[\hat f(x_0)]+\mathbb E[\hat f(x_0)]^2\\
+            &=\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2
+            \end{aligned}$$
+            and
+            $$
+            \begin{aligned}
+            \frac B2
+            &=\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)
+            \left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)\right]\\
+            &=\mathbb E\left[
+                f(x_0)\mathbb E[\hat f(x_0)]
+                -f(x_0)\hat f(x_0)
+                -\mathbb E[\hat f(x_0)]^2+\mathbb E[\hat f(x_0)]\hat f(x_0)
+                    \right]\\
+            &=f(x_0)\mathbb E[\hat f(x_0)]-f(x_0)\mathbb E[\hat f(x_0)]
+            -\mathbb E[\hat f(x_0)]^2+\mathbb E[\hat f(x_0)]^2\\
+            &=0.
+            \end{aligned}
+            $$
+        - Thus, the MSE is now decomposed;
+            $$\begin{align*}
+            \text{MSE}
+            &=\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2
+            +\mathbb E\left[\left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)^2\right]+\sigma^2\\
+            &=\text{Bias}\left(\hat f(x_0)\right)^2
+            +\text{Var}\left(\hat f(x_0)\right)
+            +\text{Var}(\epsilon).
+            \end{align*}$$
+    - *Variance* and *bias*.
+        - Variance refers to the amount by which $\hat f$ would change if we estimated it using a different training data set.
+        Since the training data are used to fit the statistical learning method, different training data sets will result in a different $\hat f$.
+        But ideally the estimate for $f$ should not vary too much between training sets.
+        However, if a method has high variance then small changes in the training data can result in large changes in $\hat f$.
+        In general, more flexible statistical methods have higher variance.
+        - *Bias* refers to the error that is introduced by approximating a real-life problem, which may be extremely complicated, by a much simpler model.
+    - U-shaped MSE :
+    As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease.
+    The relative rate of change of these two quantities determines whether the test MSE increases or decreases.
+    As we increase the flexibility of a class of methods, the bias tends to initially decrease faster than the variance increases.
+    Consequently, the expected test MSE declines. However, at some point increasing flexibility has little impact on the bias but starts to significantly increase the variance.
+    When this happens the test MSE increases.
+    ![alt text](image.png)
+    - The relationship between bias, variance, and test set MSE is referred to as the **bias-variance trade-off.**
+    Good test set performance of a statistical learning method requires low variance as well as low squared bias.
+    This is referred to as a trade-off because it is easy to obtain a method with extremely low bias but high variance or a method with very low variance but high bias.
