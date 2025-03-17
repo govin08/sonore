@@ -63,9 +63,9 @@ ESC-50 탐색
 - 책 : 
 [Introduction to Statistical Learning in Python](https://www.statlearning.com/), ISLP로 표기
 
-ISLP
-- Preface
-- 1 Introduction
+## Preface (ISLP)
+
+## 1 Introduction (ISLP)
 
 ## 2 Statistical Learning (ISLP)
 2.1 What is statistical learning?
