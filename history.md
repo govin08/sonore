@@ -216,7 +216,7 @@ ISLP
     As we increase the flexibility of a class of methods, the bias tends to initially decrease faster than the variance increases.
     Consequently, the expected test MSE declines. However, at some point increasing flexibility has little impact on the bias but starts to significantly increase the variance.
     When this happens the test MSE increases.
-    ![alt text](fig.2.12.png)
+    ![alt text](./images/fig.2.12.png)
     - The relationship between bias, variance, and test set MSE is referred to as the **bias-variance trade-off.**
     Good test set performance of a statistical learning method requires low variance as well as low squared bias.
     This is referred to as a trade-off because it is easy to obtain a method with extremely low bias but high variance or a method with very low variance but high bias.
