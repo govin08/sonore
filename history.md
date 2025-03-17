@@ -148,7 +148,7 @@ ISLP
         - For a collected training set $\mathcal D$, we have an approximation $\hat f$ of $f$.
         - We take the expectation $\mathbb E$ in a sense that the training set $\mathcal D$ may vary so that $\hat f$ can have different forms and in the sense that $\epsilon$ may vary.
         - For a given test value $x_0$, we have
-            $$\begin{align}
+            \begin{align}
             \text{MSE}
             &=\mathbb E\left[(y_0-\hat f(x_0))^2\right]\\
             &=\mathbb E\left[(f(x_0)+\epsilon-\hat f(x_0))^2\right]\\
@@ -159,7 +159,7 @@ ISLP
             +2\mathbb E\left[(f(x_0)-\hat f(x_0))\right]\mathbb E[\epsilon]
             +\mathbb E[\epsilon^2]\\
             &=\mathbb E\left[(f(x_0)-\hat f(x_0))^2\right]+\sigma^2.
-            \end{align}$$
+            \end{align}
         - The first term of the right hand side becomes
             $$\begin{align}
             &\mathbb E\left[\left(f(x_0)-\hat f(x_0)\right)^2\right]\\
