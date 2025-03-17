@@ -148,7 +148,7 @@ ISLP
         - For a collected training set $\mathcal D$, we have an approximation $\hat f$ of $f$.
         - We take the expectation $\mathbb E$ in a sense that the training set $\mathcal D$ may vary so that $\hat f$ can have different forms and in the sense that $\epsilon$ may vary.
         - For a given test value $x_0$, we have
-            \begin{align}
+            $$\begin{aligned}
             \text{MSE}
             &=\mathbb E\left[(y_0-\hat f(x_0))^2\right]\\
             &=\mathbb E\left[(f(x_0)+\epsilon-\hat f(x_0))^2\right]\\
@@ -159,9 +159,9 @@ ISLP
             +2\mathbb E\left[(f(x_0)-\hat f(x_0))\right]\mathbb E[\epsilon]
             +\mathbb E[\epsilon^2]\\
             &=\mathbb E\left[(f(x_0)-\hat f(x_0))^2\right]+\sigma^2.
-            \end{align}
+            \end{aligned}$$
         - The first term of the right hand side becomes
-            $$\begin{align}
+            $$\begin{aligned}
             &\mathbb E\left[\left(f(x_0)-\hat f(x_0)\right)^2\right]\\
             =&\mathbb E\left[\left(f(x_0)
             -\mathbb E[\hat f(x_0)]+\mathbb E[\hat f(x_0)]
@@ -171,16 +171,16 @@ ISLP
             \left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)\right]
             +\mathbb E\left[\left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)^2\right]\\
             =&A+B+C.
-            \end{align}$$
+            \end{aligned}$$
             where
-            $$\begin{align}
+            $$\begin{aligned}
             A&=\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2\right]\\
             &=f(x_0)^2-2f(x_0)\mathbb E[\hat f(x_0)]+\mathbb E[\hat f(x_0)]^2\\
             &=\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)^2
-            \end{align}$$
+            \end{aligned}$$
             and
             $$
-            \begin{align}
+            \begin{aligned}
             \frac B2
             &=\mathbb E\left[\left(f(x_0)-\mathbb E[\hat f(x_0)]\right)
             \left(\mathbb E[\hat f(x_0)]-\hat f(x_0)\right)\right]\\
@@ -192,7 +192,7 @@ ISLP
             &=f(x_0)\mathbb E[\hat f(x_0)]-f(x_0)\mathbb E[\hat f(x_0)]
             -\mathbb E[\hat f(x_0)]^2+\mathbb E[\hat f(x_0)]^2\\
             &=0.
-            \end{align}
+            \end{aligned}
             $$
         - Thus, the MSE is now decomposed;
             $$\begin{align*}
