@@ -221,3 +221,15 @@ $$Y=f(X)+\epsilon\tag{2.1}$$
     - The relationship between bias, variance, and test set MSE is referred to as the **bias-variance trade-off.**
     Good test set performance of a statistical learning method requires low variance as well as low squared bias.
     This is referred to as a trade-off because it is easy to obtain a method with extremely low bias but high variance or a method with very low variance but high bias.
+
+# 2025. 3. 19 수
+
+## 2 Statistical Learning (ISLP)
+2.1 What is Statistical Learning?
+- 2.1.3 The Classification Setting
+    - The Bayes Classifier
+        - A very simple classifier that assigns each observation to the most likely class, given its predictor values.
+        - Given a test predictor (or a set of test predictors) $x_0$, we have (discrete) distribution $j\mapsto\text{Pr}(Y=j|X=x_0)$.
+        For each $x_0$, we choose the $j$ that maximize the probability.
+        - That is,
+        $$\text{Bayes classifier : }x_0\mapsto\text{argmax}_j\text{Pr}(Y=j|X=x_0).$$
